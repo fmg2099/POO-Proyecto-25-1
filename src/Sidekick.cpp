@@ -1,5 +1,5 @@
 #include "Sidekick.h"
-
+using namespace LoW;
 void Sidekick::update()
 {
 	//moverse hacia el jugador hasta cierta distancia

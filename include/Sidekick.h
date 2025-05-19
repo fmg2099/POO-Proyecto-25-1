@@ -3,25 +3,30 @@
 #include "Player.h"
 #include "raymath.h"
 
-class Sidekick :public GameObject
+namespace LoW
 {
-public :
-	float speed = 100;
-	//referencia al gameobject al que sirve este sidekick
-	GameObject* owner;
-
-	//constructor heredado de GameObject
-	Sidekick(Vector2 pos, std::string _name, Texture tex) :
-		GameObject(pos, _name, tex) {
-	}
-	void update() override;
-
-	void attack()
+	class Sidekick :public GameObject
 	{
-		std::cout << name << "Atacando" << std::endl;
-	}
-	void flee()
-	{
-		std::cout << name << "Huye como cobarde" << std::endl;
-	}
-};
+	public:
+		float speed = 100;
+		//referencia al gameobject al que sirve este sidekick
+		GameObject* owner;
+
+		//constructor heredado de GameObject
+		Sidekick(Vector2 pos, std::string _name, Texture tex) :
+			owner(nullptr),
+			GameObject(pos, _name, tex)
+		{
+		}
+		void update() override;
+
+		void attack()
+		{
+			std::cout << name << "Atacando" << std::endl;
+		}
+		void flee()
+		{
+			std::cout << name << "Huye como cobarde" << std::endl;
+		}
+	};
+}

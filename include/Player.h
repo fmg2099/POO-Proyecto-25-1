@@ -1,21 +1,44 @@
 #pragma once
 #include "GameObject.h"
-class Player :
-    public GameObject
+#include "IAttacker.h"
+#include "Weapon.h"
+#include "Sidekick.h"
+
+namespace LoW
 {
-public: 
-	float speed = 10.0f;
-
-	//constructor heredado de GameObject
-	Player(Vector2 pos, std::string _name, Texture tex) :
-		GameObject(pos, _name, tex) {}
-
-
-	void update() override;
-
-	void attack()
+	class Player :
+		public GameObject, public IAttacker
 	{
-		std::cout << name << "Atacando" << std::endl;
-	}
-};
+	private:
+		//instrumento que le permite atacar
+		IAttacker* weapon;
+		//Sidekick* coso;
+	public: 
+		float speed = 10.0f;
 
+		//constructor heredado de GameObject
+		Player(Vector2 pos, std::string _name, Texture tex) :
+			GameObject(pos, _name, tex), 
+			weapon(nullptr)
+			//sidekicks{ nullptr, nullptr, nullptr }
+		{ }
+
+
+		void update() override;
+
+		void attack()
+		{
+			std::cout << name << "Atacando" << std::endl;
+		}
+
+		//hay que sobrecargar esta funcion a fuerzas
+		void Fire();
+
+		IAttacker* SetWeapon(IAttacker* newWeapon);
+		//void SetSidekick(Sidekick* newsidekick, int index);
+
+
+
+	};
+
+}
