@@ -3,9 +3,9 @@
 #include "Player.h"
 #include "raymath.h"
 
+
 namespace LoW
 {
-
 	class Sidekick :public GameObject
 	{
 	public:
@@ -15,7 +15,9 @@ namespace LoW
 
 		//constructor heredado de GameObject
 		Sidekick(Vector2 pos, std::string _name, Texture tex) :
-			GameObject(pos, _name, tex) {
+			owner(nullptr),
+			GameObject(pos, _name, tex)
+		{
 		}
 		void update() override;
 

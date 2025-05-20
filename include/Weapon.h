@@ -4,8 +4,7 @@
 namespace LoW
 {
 
-	class Weapon //:
-		//    public GameObject
+	class Weapon :public GameObject
 	{
 	};
 }
