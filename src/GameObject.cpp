@@ -1,11 +1,11 @@
 #include "GameObject.h"
 
-void GameObject::update()
+void LoW::GameObject::update()
 {
 	//std::cout << name << " update" << std::endl;
 }
 
-void GameObject::draw()
+void LoW::GameObject::draw()
 {
 
 	DrawTexture(texture, position.x, position.y, WHITE);

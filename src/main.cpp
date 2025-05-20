@@ -16,6 +16,7 @@ by Jeffery Myers is marked with CC0 1.0. To view a copy of this license, visit h
 #include "Sidekick.h"
 #include <vector>
 
+using namespace LoW;
 
 int main ()
 {
@@ -51,7 +52,7 @@ int main ()
 	sidekick->speed = 199.0f;
 	gameObjects.push_back(sidekick);
 
-	Sidekick* sidekick2 = new Sidekick({ 800,600 }, "Bar", LoadTexture("sidekick.png"));
+	Sidekick* sidekick2 = new Sidekick({ 800,600 }, "Bar", LoadTexture("karateka.png"));
 	sidekick2->owner = playerCharacter;
 	sidekick2->DisplayName = true;
 	sidekick2->speed = 190.0f;

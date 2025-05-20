@@ -2,7 +2,7 @@
 
 //sobrecargar la funcion update de GameObject
 //para mover el objecto con las teclas
-void Player::update()
+void LoW::Player::update()
 {
 	if (IsKeyDown(KEY_A))
 	{
