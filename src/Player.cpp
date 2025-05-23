@@ -8,19 +8,46 @@ void LoW::Player::update()
 	if (IsKeyDown(KEY_A))
 	{
 		position.x -= speed * GetFrameTime();
+		animData.direction = ANIM_LEFT;
 	}
 	if (IsKeyDown(KEY_D))
 	{
 		position.x += speed * GetFrameTime();
+		animData.direction = ANIM_RIGHT;
 	}
 	if (IsKeyDown(KEY_W))
 	{
 		position.y -= speed * GetFrameTime();
+		animData.direction = ANIM_UP;
 	}
 	if (IsKeyDown(KEY_S))
 	{
 		position.y += speed * GetFrameTime();
+		animData.direction = ANIM_DOWN;
 	}
+
+	////calcular el frame de la animacion
+	animData.frameCounter++;
+	if (animData.frameCounter > animData.frameSpeed)
+	{
+		animData.frameCounter = 0;
+		animData.currentFrame++;
+
+		if (animData.currentFrame >= animData.maxFrames )
+			animData.currentFrame = 0;
+
+		std::cout << "Frame: " << animData.currentFrame << std::endl;
+	}
+}
+
+void LoW::Player::draw()
+{
+	Rectangle r = { animData.spriteWidth * animData.currentFrame ,
+					animData.spriteHeight * animData.direction,
+					animData.spriteWidth, 
+					animData.spriteHeight };
+	DrawTextureRec(texture, r, position, WHITE);
+	//DrawTexture(texture, position.x, position.y, WHITE);
 }
 
 void Player::Fire()

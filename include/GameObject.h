@@ -14,6 +14,14 @@ namespace LoW
 		Texture texture;
 		bool DisplayName = false;
 
+		//constructor predeterminado
+		GameObject() :
+			position({ 0,0 }), 
+			name("GameObject"), 
+			texture({ 0 }) {
+		}
+
+
 		//constructor
 		GameObject(Vector2 pos, std::string _name, Texture tex) :
 			position(pos), name(_name), texture(tex) { }
@@ -21,7 +29,7 @@ namespace LoW
 		//actualizar posicion
 		virtual void update();
 		// dibujar o renderizar el objeto
-		void draw();
+		virtual void draw();
 
 	};
 }

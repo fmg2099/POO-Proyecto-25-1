@@ -42,7 +42,9 @@ int main ()
 	gameObjects.push_back(myObj);  //cast implicito a GameObject*
 
 	//El jugador
-	Player* playerCharacter = new Player({ 0,0 }, "Player1", LoadTexture("wabbit_alpha.png"));
+	// este constructor ya no existe, ahora el Player establece su textura
+	//Player* playerCharacter = new Player({ 0,0 }, "Player1", LoadTexture("boy.png"));
+	Player* playerCharacter = new Player({100,100}, "Player1");
 	playerCharacter->speed = 200.0f;
 	//agregando el player pero con un cast explicito estatico
 	// estatico quiere decir que se realiza en tiempo de compilacion
