@@ -38,6 +38,17 @@ void LoW::Player::update()
 
 		std::cout << "Frame: " << animData.currentFrame << std::endl;
 	}
+
+	//si tiene arma, hacer que se mueva con el jugador
+	if (weapon)
+	{
+		Weapon* w = dynamic_cast<Weapon*>(weapon);
+		w->position = Vector2Add(position, w->offset);
+	}
+
+	//detectar colisiones con armas tiradas en el suelo
+
+
 }
 
 void LoW::Player::draw()
@@ -63,7 +74,10 @@ IAttacker* Player::SetWeapon(IAttacker* newWeapon)
 		weapon = newWeapon;
 		Weapon* w = dynamic_cast<Weapon*>(weapon);
 		if (w)
+		{
+			w->owner = this; //asignar el owner al arma
 			std::cout << "cambiando arma a " << w->name << std::endl;
+		}
 
 		//notificar a los sidekicks
 		//for (int i = 0; i < 3; i++)

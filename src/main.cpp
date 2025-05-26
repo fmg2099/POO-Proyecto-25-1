@@ -50,6 +50,11 @@ int main ()
 	// estatico quiere decir que se realiza en tiempo de compilacion
 	gameObjects.push_back( static_cast<GameObject*>( playerCharacter ) ); 
 
+	//prueba de arma
+	Weapon* w = new Weapon({ 500, 500 }, "Sword", LoadTexture("sword.png"));
+	//playerCharacter->SetWeapon(w); //asignar el arma al jugador
+	gameObjects.push_back(w); //agregar el arma al arreglo de gameobjects
+
 	Sidekick* sidekick = new Sidekick({500,0 }, "Foo", LoadTexture("sidekick.png"));
 	sidekick->owner = playerCharacter;
 	sidekick->DisplayName = true;

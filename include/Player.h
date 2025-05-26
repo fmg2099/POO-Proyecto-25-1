@@ -53,6 +53,7 @@ namespace LoW
 			animData.frameSpeed = 5;
 			name = _name;
 			position = pos;
+			animData.direction = ANIM_DOWN;
 		}
 
 
