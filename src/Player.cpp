@@ -36,7 +36,7 @@ void LoW::Player::update()
 		if (animData.currentFrame >= animData.maxFrames )
 			animData.currentFrame = 0;
 
-		std::cout << "Frame: " << animData.currentFrame << std::endl;
+		//std::cout << "Frame: " << animData.currentFrame << std::endl;
 	}
 
 	//si tiene arma, hacer que se mueva con el jugador
@@ -46,19 +46,43 @@ void LoW::Player::update()
 		w->position = Vector2Add(position, w->offset);
 	}
 
-	//detectar colisiones con armas tiradas en el suelo
+	//detectar colisiones con armas tiradas en el suelo,
+	//iterando en el vector de gameObjects y casteando a Weapon
+	for (GameObject* obj : GameObject::gameObjects)
+	{
+		Weapon* w = dynamic_cast<Weapon*>(obj);
+		if (w &&  //es un Weapon
+			w->owner == nullptr &&  //no tiene dueño
+ 			CheckCollisionRecs({ position.x, position.y, animData.spriteWidth, animData.spriteHeight }, 
+				{ w->position.x, w->position.y, 64, 64 })) //asumiendo que las armas son de 64x64
+		{
+			//std::cout << "Colision con arma: " << w->name << std::endl;
+			//SetWeapon(w); //cambiar el arma del jugador
+			shouldPromptForWeapon = true; //mostrar mensaje de recoger arma
 
-
+			if (IsKeyPressed(KEY_F)) //si se presiona F
+			{
+				SetWeapon(w); //cambiar el arma del jugador
+				shouldPromptForWeapon = false; 
+			}
+			break; 
+		}
+		else
+			shouldPromptForWeapon = false; //no hay arma cerca
+	}
 }
 
 void LoW::Player::draw()
 {
 	Rectangle r = { animData.spriteWidth * animData.currentFrame ,
 					animData.spriteHeight * animData.direction,
-					animData.spriteWidth, 
+					animData.spriteWidth,
 					animData.spriteHeight };
 	DrawTextureRec(texture, r, position, WHITE);
 	//DrawTexture(texture, position.x, position.y, WHITE);
+
+	if (shouldPromptForWeapon)
+		DrawText(weaponPrompt, 20, GetScreenHeight() - 40, 20, YELLOW);
 }
 
 void Player::Fire()

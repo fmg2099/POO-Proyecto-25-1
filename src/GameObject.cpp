@@ -1,11 +1,16 @@
 #include "GameObject.h"
 
-void LoW::GameObject::update()
+using namespace LoW;
+
+//inicializa la lista de gameObjects
+std::vector<GameObject*> GameObject::gameObjects;
+
+void GameObject::update()
 {
 	//std::cout << name << " update" << std::endl;
 }
 
-void LoW::GameObject::draw()
+void GameObject::draw()
 {
 
 	DrawTexture(texture, position.x, position.y, WHITE);

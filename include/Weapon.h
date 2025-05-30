@@ -16,6 +16,7 @@ namespace LoW
 		Weapon(Vector2 pos, std::string _name , Texture tex) :
 			GameObject(pos, _name, tex)
 		{
+			owner = nullptr; // Inicialmente no tiene dueño
 			offset = { 30.0f, 10.0f };
 		}
 
@@ -34,6 +35,12 @@ namespace LoW
 			//	position = owner->position + offset;
 			//}
 			//std::cout << "Weapon update at position: " << position.x << ", " << position.y << std::endl;
+		}
+
+		void draw() override
+		{
+			Rectangle r = { 0,0,64,64 };
+			DrawTextureRec(texture, r, position, WHITE);
 		}
 
 	};

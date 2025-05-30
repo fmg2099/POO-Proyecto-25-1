@@ -2,6 +2,7 @@
 #include "raylib.h"
 #include "string"
 #include <iostream>
+#include <vector>
 
 namespace LoW
 {
@@ -13,6 +14,9 @@ namespace LoW
 		//imagen del objeto
 		Texture texture;
 		bool DisplayName = false;
+
+		//vector estatico que contiene todos los gameObject de la escena
+		static std::vector<GameObject*> gameObjects;
 
 		//constructor predeterminado
 		GameObject() :
