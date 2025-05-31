@@ -117,14 +117,16 @@ IAttacker* Player::SetWeapon(IAttacker* newWeapon)
 	return nullptr;
 }
 
-//void Player::SetSidekick(Sidekick* newSidekick, int index)
-//{
-//	//if (index >= 0 && index < 3)
-//	//{
-//	//	sidekicks[index] = newSidekick;
-//	//}
-//	//else
-//	//{
-//	//	std::cout << "Indice de sidekick invalido" << std::endl;
-//	//}
-//}
+
+void Player::SetSidekick(Sidekick* newSidekick, int index)
+{
+	if (index >= 0 && index < 3)
+	{
+		newSidekick->owner = this;
+		sidekicks[index] = newSidekick;
+	}
+	else
+	{
+		std::cout << "Indice de sidekick invalido" << std::endl;
+	}
+}

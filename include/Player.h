@@ -35,7 +35,8 @@ namespace LoW
 
 		//instrumento que le permite atacar
 		IAttacker* weapon;
-		//Sidekick* coso;
+		Sidekick* sdk;
+		Sidekick* sidekicks[2];
 
 		//mostrar mensaje de recoger arma
 		bool shouldPromptForWeapon = false;
@@ -46,8 +47,7 @@ namespace LoW
 
 		//constructor heredado de GameObject
 		Player(Vector2 pos, std::string _name) :
-			weapon(nullptr)
-			//sidekicks{ nullptr, nullptr, nullptr }
+			weapon(nullptr), sidekicks{nullptr,nullptr}
 		{
 			texture = LoadTexture("boy-r.png");
 			animData.spriteHeight = 80;
@@ -59,6 +59,9 @@ namespace LoW
 			name = _name;
 			position = pos;
 			animData.direction = ANIM_DOWN;
+
+			//sidekicks[0] = nullptr;
+			//sidekicks[1] = nullptr;
 		}
 
 
@@ -75,7 +78,7 @@ namespace LoW
 		void Fire();
 
 		IAttacker* SetWeapon(IAttacker* newWeapon);
-		//void SetSidekick(Sidekick* newsidekick, int index);
+		void SetSidekick(Sidekick* newsidekick, int index);
 	};
 
 }

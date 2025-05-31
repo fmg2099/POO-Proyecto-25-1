@@ -58,13 +58,15 @@ int main ()
 	GameObject::gameObjects.push_back(w); //agregar el arma al arreglo de gameobjects
 
 	Sidekick* sidekick = new Sidekick({500,0 }, "Foo", LoadTexture("sidekick.png"));
-	sidekick->owner = playerCharacter;
+	//sidekick->owner = playerCharacter;
+	playerCharacter->SetSidekick(sidekick,0); 
 	sidekick->DisplayName = true;
 	sidekick->speed = 199.0f;
 	GameObject::gameObjects.push_back(sidekick);
 
 	Sidekick* sidekick2 = new Sidekick({ 800,600 }, "Bar", LoadTexture("karateka.png"));
-	sidekick2->owner = playerCharacter;
+	//sidekick2->owner = playerCharacter;
+	playerCharacter->SetSidekick(sidekick2, 1);
 	sidekick2->DisplayName = true;
 	sidekick2->speed = 190.0f;
 	GameObject::gameObjects.push_back(sidekick2);
