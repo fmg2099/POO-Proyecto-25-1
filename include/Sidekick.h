@@ -2,7 +2,6 @@
 #include "GameObject.h"
 #include "raymath.h"
 
-
 namespace LoW
 {
 class Sidekick :public GameObject

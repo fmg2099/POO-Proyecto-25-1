@@ -16,6 +16,7 @@ by Jeffery Myers is marked with CC0 1.0. To view a copy of this license, visit h
 #include "Sidekick.h"
 #include <vector>
 #include "UISystem.h"
+#include "World.h"
 
 using namespace LoW;
 
@@ -33,6 +34,9 @@ int main ()
 	// Utility function from resource_dir.h to find the resources folder and set it as the current working directory so we can load from it
 	SearchAndSetResourceDir("resources");
 
+	//cargar el mundo
+	World::getInstance();
+
 	//arreglo o lista de gameobjects en la escena
 	// comentado porque fue movido a GameObject.h
 	//std::vector<GameObject*> gameObjects; //vector de punteros a GameObject
@@ -46,7 +50,7 @@ int main ()
 	//El jugador
 	// este constructor ya no existe, ahora el Player establece su textura
 	//Player* playerCharacter = new Player({ 0,0 }, "Player1", LoadTexture("boy.png"));
-	Player* playerCharacter = new Player({100,100}, "Player1");
+	Player* playerCharacter = new Player({270, 480}, "Player1");
 	playerCharacter->speed = 200.0f;
 	//agregando el player pero con un cast explicito estatico
 	// estatico quiere decir que se realiza en tiempo de compilacion
@@ -92,10 +96,10 @@ int main ()
 	UISystem::getInstance().test(); // probar el singleton de UI
 	UISystem::Test(); // probar el metodo estatico del singleton de UI
 
-	for (int i = 0; i < 20; i++)
+	/*for (int i = 0; i < 20; i++)
 	{
 		UISystem::getInstance().createLabel(TextFormat("weeeeee %d", i), 100+i*10, 100 + i * 30, 12);
-	}
+	}*/
 
 	///UISystem::getInstance().createLabel("Bienbenido a mi juej0", 400, 400, 48);
 
@@ -118,6 +122,9 @@ int main ()
 
 		// Setup the back buffer for drawing (clear color and depth buffers)
 		ClearBackground(SKYBLUE);
+
+		//dibujar el mundo es lo primero que hacemos
+		World::getInstance().Draw();
 
 		// draw some text using the default font
 		DrawText("Ejemplo de Juego con GameObjects", 10,10,24,YELLOW);

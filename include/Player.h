@@ -1,4 +1,5 @@
 #pragma once
+#include "World.h"
 #include "GameObject.h"
 #include "IAttacker.h"
 #include "Weapon.h"
